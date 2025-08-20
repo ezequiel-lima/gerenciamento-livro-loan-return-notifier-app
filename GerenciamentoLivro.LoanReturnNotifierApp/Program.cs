@@ -1,3 +1,5 @@
+using GerenciamentoLivro.LoanReturnNotifierApp.HttpClients;
+using GerenciamentoLivro.LoanReturnNotifierApp.Services;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,5 +14,7 @@ builder.Services
     .ConfigureFunctionsApplicationInsights();
 
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<ILoanReminderService, LoanReminderService>();
+builder.Services.AddScoped<ILoanHttpClient, LoanHttpClient>();
 
 builder.Build().Run();
