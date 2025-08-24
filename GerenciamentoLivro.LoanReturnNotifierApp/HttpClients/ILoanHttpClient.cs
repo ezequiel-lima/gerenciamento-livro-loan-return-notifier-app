@@ -4,6 +4,6 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.HttpClients
 {
     public interface ILoanHttpClient
     {
-        Task<LoansResponse?> GetLoansPaginated(int pageNumber, int pageSize);
+        Task<LoansResponseDto?> GetLoansPaginated(int pageNumber, int pageSize);
     }
 }

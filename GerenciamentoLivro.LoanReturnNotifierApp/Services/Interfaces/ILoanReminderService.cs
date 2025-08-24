@@ -1,4 +1,4 @@
-﻿namespace GerenciamentoLivro.LoanReturnNotifierApp.Services
+﻿namespace GerenciamentoLivro.LoanReturnNotifierApp.Services.Interfaces
 {
     public interface ILoanReminderService
     {

@@ -2,7 +2,7 @@
 
 namespace GerenciamentoLivro.LoanReturnNotifierApp.Dtos
 {
-    public class LoanItem
+    public class LoanItemDto
     {
         [JsonPropertyName("idUsuario")]
         public Guid UserId { get; set; }
@@ -10,19 +10,10 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.Dtos
         [JsonPropertyName("nomeUsuario")]
         public string? UserName { get; set; }
 
-        [JsonPropertyName("idLivro")]
-        public Guid BookId { get; set; }
-
         [JsonPropertyName("tituloLivro")]
         public string? BookTitle { get; set; }
 
-        [JsonPropertyName("dataEmprestimo")]
-        public DateTime LoanDate { get; set; }
-
         [JsonPropertyName("dataDevolucaoPrevista")]
         public DateTime DueDate { get; set; }
-
-        [JsonPropertyName("dataDevolucaoEfetiva")]
-        public DateTime? ReturnDate { get; set; }
     }
 }

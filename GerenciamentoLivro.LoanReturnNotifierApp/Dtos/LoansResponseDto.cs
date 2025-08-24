@@ -2,10 +2,10 @@
 
 namespace GerenciamentoLivro.LoanReturnNotifierApp.Dtos
 {
-    public class LoansResponse
+    public class LoansResponseDto
     {
         [JsonPropertyName("itens")]
-        public List<LoanItem> Items { get; set; } = new();
+        public List<LoanItemDto> Items { get; set; } = new();
 
         [JsonPropertyName("totalItens")]
         public int TotalItems { get; set; }

@@ -12,14 +12,15 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.HttpClients
             _httpClient = httpClientFactory.CreateClient();
         }
 
-        public async Task<LoansResponse?> GetLoansPaginated(int pageNumber, int pageSize)
+        public async Task<LoansResponseDto?> GetLoansPaginated(int pageNumber, int pageSize)
         {
-            var url = $"https://localhost:7140/api/Emprestimos?numeroPagina={pageNumber}&tamanhoPagina={pageSize}";
+            // Melhoria
+            var url = $"https://localhost:7140/api/Emprestimos/atrasados?numeroPagina={pageNumber}&tamanhoPagina={pageSize}";
             var response = await _httpClient.GetAsync(url);
 
             if (!response.IsSuccessStatusCode) return null;
 
-            return await response.Content.ReadFromJsonAsync<LoansResponse>();
+            return await response.Content.ReadFromJsonAsync<LoansResponseDto>();
         }
     }
 }

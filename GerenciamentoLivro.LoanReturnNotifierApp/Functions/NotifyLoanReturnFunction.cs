@@ -1,4 +1,4 @@
-using GerenciamentoLivro.LoanReturnNotifierApp.Services;
+using GerenciamentoLivro.LoanReturnNotifierApp.Services.Interfaces;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
@@ -16,7 +16,7 @@ public class NotifyLoanReturnFunction
     }
 
     [Function("NotifyLoanReturnFunction")]
-    public async Task Run([TimerTrigger("0 */1 * * * *")] TimerInfo myTimer)
+    public async Task Run([TimerTrigger("%LoanReminderSchedule%")] TimerInfo myTimer)
     {
         _logger.LogInformation("Starting loan verification at {time}.", DateTime.Now);
         await _loanReminderService.ProcessOverdueLoans();
