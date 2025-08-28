@@ -1,6 +1,6 @@
 ﻿using GerenciamentoLivro.LoanReturnNotifierApp.Configurations;
-using GerenciamentoLivro.LoanReturnNotifierApp.Helpers;
 using GerenciamentoLivro.LoanReturnNotifierApp.HttpClients;
+using GerenciamentoLivro.LoanReturnNotifierApp.Models;
 using GerenciamentoLivro.LoanReturnNotifierApp.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -15,9 +15,9 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.Services
         private readonly PaginationSettings _paginationSettings;
 
         public LoanReminderService(
-            ILoggerFactory loggerFactory, 
-            ILoanHttpClient httpClient, 
-            INotificationService notificationService, 
+            ILoggerFactory loggerFactory,
+            ILoanHttpClient httpClient,
+            INotificationService notificationService,
             IOptions<PaginationSettings> paginationSettings)
         {
             _logger = loggerFactory.CreateLogger<LoanReminderService>();
@@ -30,8 +30,7 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.Services
         {
             int currentPage = 0;
             bool shouldContinue = true;
-
-            var helper = new UserLoanNotificationHelper(_notificationService);
+            var usersNotified = new HashSet<Guid>();
 
             while (shouldContinue)
             {
@@ -43,14 +42,31 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.Services
                     break;
                 }
 
-                foreach (var loan in response.Items)
-                    await helper.ProcessLoanAsync(loan);
-                
+                var userModels = response.Items
+                    .GroupBy(x => x.UserId)
+                    .Select(group =>
+                    {
+                        var first = group.First();
+
+                        if (!usersNotified.Add(group.Key))
+                            return null;
+
+                        return new UserModel(
+                            userId: group.Key,
+                            userName: first.UserName ?? "Unknown",
+                            bookTitles: group.Select(x => x.BookTitle ?? "UnknownBookTitle").ToList()
+                        );
+                    })
+                    .Where(model => model is not null);
+
+                foreach (var user in userModels)
+                {
+                    await _notificationService.NotifyUserLoanAsync(user!);
+                }
+
                 currentPage++;
                 shouldContinue = response.Items.Count == _paginationSettings.PageSize;
-            }
-
-            await helper.SendUserLoanGroupAsync();
+            }           
         }
     }
 }

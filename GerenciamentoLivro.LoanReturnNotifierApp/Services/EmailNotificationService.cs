@@ -13,11 +13,11 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.Services
             _logger = logger;
         }
 
-        public Task NotifyUserLoanAsync(UserLoanGroup userLoanGroup)
+        public Task NotifyUserLoanAsync(UserModel userModel)
         {
             // TODO
-            _logger.LogInformation("Sending e-mail to {UserName} (ID: {UserId})", userLoanGroup.UserName, userLoanGroup.UserId);
-            foreach (var title in userLoanGroup.BookTitles)
+            _logger.LogInformation("Sending e-mail to {UserName} (ID: {UserId})", userModel.UserName, userModel.UserId);
+            foreach (var title in userModel.BookTitles)
             {
                 _logger.LogInformation(" - {Book}", title);
             }
