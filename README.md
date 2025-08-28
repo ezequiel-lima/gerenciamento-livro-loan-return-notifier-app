@@ -1,5 +1,7 @@
 # GerenciamentoLivro.LoanReturnNotifierApp
 
+Esta Azure Function tem como objetivo **emitir mensagens para usuários com empréstimos em atraso**, com base na quantidade de **dias de atraso identificados** via API.
+
 ## 📁 `local.settings.json`
 
 Este arquivo define as configurações locais para execução da Azure Function em ambiente de desenvolvimento.
