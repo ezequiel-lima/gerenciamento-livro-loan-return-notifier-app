@@ -1,4 +1,4 @@
-# GerenciamentoLivro.LoanReturnNotifierApp
+# Azure Function do Sistema de Gerenciamento de Livros
 
 Esta Azure Function tem como objetivo **emitir mensagens para usuários com empréstimos em atraso**, com base na quantidade de **dias de atraso identificados** via API.
 
