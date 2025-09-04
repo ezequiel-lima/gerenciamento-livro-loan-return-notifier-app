@@ -38,6 +38,10 @@ Este arquivo define as configurações locais para execução da Azure Function 
 | `PaginationSettings:PageSize`      | Quantidade de itens por página ao realizar paginação via API. |
 | `LoanApiSettings:BaseUrl`          | URL base da API que fornece os empréstimos. |
 | `LoanApiSettings:OverdueEndpoint`  | Caminho do endpoint para obter os empréstimos em atraso. |
+| `EmailApiSettings:ApiKey`          | Chave de autenticação para uso da API de envio de e-mails (MailerSend). |
+| `EmailApiSettings:BaseUrl`         | URL base da API de envio de e-mails. |
+| `EmailApiSettings:FromEmail`       | E-mail do remetente usado para o envio de notificações. |
+| `EmailApiSettings:FromName`        | Nome que aparecerá como remetente nos e-mails enviados. |
 
 ## ✉️ Envio de e-mails com MailerSend
 
