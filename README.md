@@ -18,7 +18,11 @@ Este arquivo define as configurações locais para execução da Azure Function 
     "LoanReminderSchedule": "0 */1 * * * *",
     "PaginationSettings:PageSize": "100",
     "LoanApiSettings:BaseUrl": "https://localhost:7140",
-    "LoanApiSettings:OverdueEndpoint": "/api/Emprestimos/atrasados"
+    "LoanApiSettings:OverdueEndpoint": "/api/Emprestimos/atrasados",
+    "EmailApiSettings:ApiKey": "mlsn.c69e3beee65cf082e360fadcbb4271e2a145d7a8e3d09dcae815c4a0bb704038",
+    "EmailApiSettings:BaseUrl": "https://api.mailersend.com",
+    "EmailApiSettings:FromEmail": "sistema-livros@test-y7zpl980vq545vx6.mlsender.net",
+    "EmailApiSettings:FromName": "Sistema de Livros"
   }
 }
 ```
