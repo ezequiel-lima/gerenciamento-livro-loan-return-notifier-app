@@ -23,7 +23,7 @@ Este arquivo define as configurações locais para execução da Azure Function 
 }
 ```
 
-### 🔍 Detalhamento das configurações
+## 🔍 Detalhamento das configurações
 
 | **Chave**                          | **Descrição**                                                                 |
 |------------------------------------|--------------------------------------------------------------------------------|
@@ -34,6 +34,31 @@ Este arquivo define as configurações locais para execução da Azure Function 
 | `PaginationSettings:PageSize`      | Quantidade de itens por página ao realizar paginação via API. |
 | `LoanApiSettings:BaseUrl`          | URL base da API que fornece os empréstimos. |
 | `LoanApiSettings:OverdueEndpoint`  | Caminho do endpoint para obter os empréstimos em atraso. |
+
+## ✉️ Envio de e-mails com MailerSend
+
+O envio das mensagens é realizado utilizando a plataforma [MailerSend](https://www.mailersend.com/), que fornece uma API para disparo de e-mails.
+
+A comunicação é feita por meio de uma requisição HTTP `POST` para o endpoint: https://api.mailersend.com/v1/email
+
+### Exemplo de email enviado 
+
+Abaixo está um exemplo de e-mail enviado pela Azure Function, contendo os livros em atraso associados ao usuário identificado pela API. 
+
+<img width="826" height="275" alt="image" src="https://github.com/user-attachments/assets/8be2ca42-fbb6-434b-bac2-8f0ca8e2c962" />
+
+## 📜 Logs
+
+Os logs abaixo demonstram o funcionamento interno da Azure Function durante a execução do job. Cada etapa do processo é registrada:
+
+- Consulta à API de empréstimos atrasados
+- Preparação e envio do e-mail via MailerSend
+- Confirmação de envio (status 202 Accepted)
+- Erros tratados (como limite de conta trial)
+
+Isso permite auditoria e depuração em tempo real, facilitando o diagnóstico de falhas.
+
+<img width="1356" height="535" alt="image" src="https://github.com/user-attachments/assets/640608bd-a568-4bbc-aed6-591c4ba58512" />
 
 ## 🔗 Repositórios Relacionados
 
