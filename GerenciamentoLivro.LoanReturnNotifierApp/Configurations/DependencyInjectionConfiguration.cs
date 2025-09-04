@@ -12,14 +12,17 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.Configurations
         {
             builder.Services.AddHttpClient();
             builder.Services.AddScoped<ILoanHttpClient, LoanHttpClient>();
+            builder.Services.AddScoped<IEmailHttpClient, EmailHttpClient>();
 
-            builder.Services.AddScoped<INotificationService, EmailNotificationService>();
+            builder.Services.AddScoped<IEmailNotificationService, EmailNotificationService>();
             builder.Services.AddScoped<ILoanReminderService, LoanReminderService>();
 
             builder.Services.Configure<PaginationSettings>(
                 builder.Configuration.GetSection("PaginationSettings"));
             builder.Services.Configure<LoanApiSettings>(
                 builder.Configuration.GetSection("LoanApiSettings"));
+            builder.Services.Configure<EmailApiSettings>(
+                builder.Configuration.GetSection("EmailApiSettings"));
 
             return builder;
         }

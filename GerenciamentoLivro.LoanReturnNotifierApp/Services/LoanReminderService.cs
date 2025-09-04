@@ -11,13 +11,13 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.Services
     {
         private readonly ILogger _logger;
         private readonly ILoanHttpClient _httpClient;
-        private readonly INotificationService _notificationService;
+        private readonly IEmailNotificationService _notificationService;
         private readonly PaginationSettings _paginationSettings;
 
         public LoanReminderService(
             ILoggerFactory loggerFactory,
             ILoanHttpClient httpClient,
-            INotificationService notificationService,
+            IEmailNotificationService notificationService,
             IOptions<PaginationSettings> paginationSettings)
         {
             _logger = loggerFactory.CreateLogger<LoanReminderService>();
@@ -53,8 +53,9 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.Services
 
                         return new UserModel(
                             userId: group.Key,
-                            userName: first.UserName ?? "Unknown",
-                            bookTitles: group.Select(x => x.BookTitle ?? "UnknownBookTitle").ToList()
+                            userName: first.UserName ?? "Unknown Name",
+                            userEmail: first.UserEmail ?? "Unknown Email",
+                            bookTitles: group.Select(x => x.BookTitle ?? "Unknown Book Title").ToList()
                         );
                     })
                     .Where(model => model is not null);

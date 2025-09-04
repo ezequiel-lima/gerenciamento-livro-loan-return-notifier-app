@@ -2,8 +2,8 @@
 
 namespace GerenciamentoLivro.LoanReturnNotifierApp.Services.Interfaces
 {
-    public interface INotificationService
+    public interface IEmailNotificationService
     {
-        Task NotifyUserLoanAsync(UserModel userLoanGroup);
+        Task NotifyUserLoanAsync(UserModel userModel);
     }
 }

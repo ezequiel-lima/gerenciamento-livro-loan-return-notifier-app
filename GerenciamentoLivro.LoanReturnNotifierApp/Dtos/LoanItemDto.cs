@@ -10,6 +10,9 @@ namespace GerenciamentoLivro.LoanReturnNotifierApp.Dtos
         [JsonPropertyName("nomeUsuario")]
         public string? UserName { get; set; }
 
+        [JsonPropertyName("emailUsuario")]
+        public string? UserEmail { get; set; }
+
         [JsonPropertyName("tituloLivro")]
         public string? BookTitle { get; set; }
 
